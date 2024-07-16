@@ -7,213 +7,98 @@
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-
 </head>
-<body id="body_element" class="bg-light_gray transition-all">
+<body id="body_element" class="{{$theme_mode == 'dark' ? 'bg-dark_gray' : 'bg-light_gray'}} transition-all">
 
     {{-- This main is taking the whole height and containing the whole body --}}
-    <main id="main_element" class="h-[100%] bg-light_gray transition-all">
+    <main id="main_element" class="h-[100%] {{$theme_mode == 'dark' ? 'bg-dark_gray' : 'bg-light_gray'}} transition-all">
 
-    <nav class="w-full h-[64px] flex flex-col justify-center items-center bg-slate-50 " style="box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);">
+    <nav class="w-full h-[64px] flex flex-col justify-center items-center {{$theme_mode == 'dark' ? 'bg-dark_gray' : 'bg-slate-50'}}" style="box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);">
 
-        <img id="light_mode_logo" class="cursor-pointer" src="{{ asset('files/images/light_mode_logo.png') }}" width="88px" alt="Pic">
+        <img id="light_mode_logo" class="cursor-pointer {{$theme_mode == 'dark' ? 'hidden' : ''}}" src="{{ asset('files/images/light_mode_logo.png') }}" width="88px" alt="Pic">
 
         {{-- Dark Mode Logo --}}
-        <img id="dark_mode_logo" class="cursor-pointer hidden" src="{{ asset('files/images/dark_mode_logo.png') }}" width="88px" alt="Pic">
+        <img id="dark_mode_logo" class="cursor-pointer {{$theme_mode == 'dark' ? '' : 'hidden'}}" src="{{ asset('files/images/dark_mode_logo.png') }}" width="88px" alt="Pic">
 
     </nav>
 
     {{-- Dark Mode Toggle --}}
-    <div id="dark_mode_toggle_button" class="w-full flex flex-col justify-center items-center mt-[4vh] transition-all   md:absolute md:top-[16px] md:items-end md:pr-4 md:mt-[0]">
-            {{-- Light Mode Icon --}}
-            <img id="light_mode_icon" class="cursor-pointer" src="{{ asset('files/images/light_mode_icon.png') }}" width = "64px" alt="">
+    <div id="dark_mode_toggle_button" class="w-full flex flex-col justify-center items-center mt-[4vh] transition-all md:absolute md:top-[16px] md:items-end md:pr-4 md:mt-[0]">
+        {{-- Light Mode Icon --}}
+        <img id="light_mode_icon" class="cursor-pointer {{$theme_mode == 'dark' ? 'hidden' : ''}}" src="{{ asset('files/images/light_mode_icon.png') }}" width="64px" alt="">
 
-            {{-- Dark Mode Icon --}}
-            <img id="dark_mode_icon" class="cursor-pointer hidden" src="{{ asset('files/images/dark_mode_icon.png') }}" width = "64px" alt="">
-
+        {{-- Dark Mode Icon --}}
+        <img id="dark_mode_icon" class="cursor-pointer {{$theme_mode == 'dark' ? '' : 'hidden'}}" src="{{ asset('files/images/dark_mode_icon.png') }}" width="64px" alt="">
     </div>
 
+    {{-- Opening Message --}}
+    <h2 id="first_message" class="{{$theme_mode == 'dark' ? 'text-dark_mode_blue' : 'text-light_mode_blue'}} text-center text-[32px] font-normal font-['Inter'] mt-[4vh]">Let’s Log In :)</h2>
 
+    {{-- The Github Button --}}
+    <div class="flex flex-col justify-center items-center mt-[4vh]">
+        <a href="auth/redirect" class="cursor-pointer flex flex-col items-center">
+            <img src="{{ asset('files/images/github_button.png') }}" alt="Github logo" class="cursor-pointer hover:opacity-80 w-[94%] md:w-[300px]">
+        </a>
+    </div>
+    {{-- Hr Line --}}
+    <hr id="hr_line" class="{{$theme_mode == 'dark' ? 'bg-white' : 'bg-black'}} mt-[4vh] md:h-[2px]">
 
-        {{-- Opening Message --}}
-        <h2 id="first_message" class="text-light_mode_blue text-center text-[32px] font-normal font-['Inter'] mt-[4vh]">Let’s Log In :)</h2>
-
-
-
-        {{-- The Github Button --}}
-        <div class="flex flex-col justify-center items-center mt-[4vh]">
-
-            <a href="auth/redirect" class="cursor-pointer flex flex-col items-center">
-                <img src="{{ asset('files/images/github_button.png') }}" alt="Github logo" class="cursor-pointer hover:opacity-80 w-[94%] md:w-[300px]">
-            </a>
-
-        </div>
-        {{-- Hr Line --}}
-        <hr id="hr_line" class="bg-black mt-[4vh] md:h-[2px]">
-
-
-
-    {{-- Form Starts- 5 inputs (section select with 5 options, name , email, password, confirm password) --}}
+    {{-- Form Starts --}}
     <form action="{{ route('login') }}" method="POST" class="w-full flex flex-col justify-center items-center mt-8 transition-all md:mt-2">
-
         {{-- CSRF Protected --}}
         @csrf
 
-            {{-- Email input --}}
-            <div class="flex flex-col self-center w-full max-w-[90vw] mt-4 md:mt-2 md:max-w-[500px]">
-                <label id="email_input_label" for="email_input" class="text-left">Email:</label>
-            </div>
-            <input type="email" id="email_input" name="email" class="w-[90vw] border-none rounded-md md:mt-2 md:max-w-[500px]">
-            @error('email')
-            <span class="text-red-500 text-sm">{{ $message }}</span>
-            @enderror
+        {{-- Email input --}}
+        <div class="flex flex-col self-center w-full max-w-[90vw] mt-4 md:mt-2 md:max-w-[500px]">
+            <label id="email_input_label" for="email_input" class="{{$theme_mode == 'dark' ? 'text-white' : ''}} text-left">Email:</label>
+        </div>
+        <input type="email" id="email_input" name="email" class="w-[90vw] border-none rounded-md md:mt-2 md:max-w-[500px] {{$theme_mode == 'dark' ? 'bg-input_dark_mode text-white' : ''}}">
+        @error('email')
+        <span class="text-red-500 text-sm">{{ $message }}</span>
+        @enderror
 
-            {{-- Password input --}}
-            <div class="flex flex-col self-center w-full max-w-[90vw] mt-4 md:mt-2 md:max-w-[500px]">
-                <label id="password_input_label" for="password" class="text-left">Password:</label>
-            </div>
-            <input type="password" id="password_input" name="password" class="w-[90vw] border-none rounded-md md:mt-2 md:max-w-[500px]">
-            @error('password')
-            <span class="text-red-500 text-sm">{{ $message }}</span>
-            @enderror
+        {{-- Password input --}}
+        <div class="flex flex-col self-center w-full max-w-[90vw] mt-4 md:mt-2 md:max-w-[500px]">
+            <label id="password_input_label" for="password" class="{{$theme_mode == 'dark' ? 'text-white' : ''}} text-left">Password:</label>
+        </div>
+        <input type="password" id="password_input" name="password" class="w-[90vw] border-none rounded-md md:mt-2 md:max-w-[500px] {{$theme_mode == 'dark' ? 'bg-input_dark_mode text-white' : ''}}">
+        @error('password')
+        <span class="text-red-500 text-sm">{{ $message }}</span>
+        @enderror
 
-            {{-- Log In button --}}
-            <input type="submit" id="submit_button" value="Log In" class="mt-[4vh] mb-[4vh] h-12 w-[90%] rounded-md bg-light_mode_blue text-white hover:opacity-90 text-xl md:max-w-[350px] md:mb-[12vh]">
-
-        </form>
-
-
+        {{-- Log In button --}}
+        <input type="submit" id="submit_button" value="Log In" class="mt-[4vh] mb-[4vh] h-12 w-[90%] rounded-md {{$theme_mode == 'dark' ? 'bg-dark_mode_blue' : 'bg-light_mode_blue'}} text-white hover:opacity-90 text-xl md:max-w-[350px] md:mb-[12vh]">
+    </form>
 
     </main>
-
-
 
     {{-- ******************** Javascript Code ******************** --}}
 
     <script>
-        // Managing the dark mode from Backend php/Laravel Session
-        document.addEventListener('DOMContentLoaded', function() {
-                if(@json($theme_mode) == 'dark'){
+        // Dark mode toggle button operation
+        document.querySelector('#dark_mode_toggle_button').addEventListener('click', async () => {
+            await fetch('{{ route('set_theme_mode') }}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify({
+                    theme_mode: @json($theme_mode) == 'dark' ? 'light' : 'dark'
+                })
+            }).then(response => response.text())
+              .then(data => {
+                  console.log('set_theme_mode console response: ', data);
+              })
+              .catch(error => {
+                  console.log('set_theme_mode console error: ', error);
+              });
 
-                    // Clicking the theme toggle button artificially
-                    document.getElementById('dark_mode_toggle_button').click();
+            // Refreshing the page
+            window.location.reload();
+        });
 
-                     }
-                else {
-                    first_load_check = false;
-                }
-                });
-
-
-
-            // Dark mode toggle button operation
-                let first_load_check = true;
-            document.querySelector('#dark_mode_toggle_button').addEventListener('click', async()=>{
-                // Setting theme mode session based on user click through api post request
-                         // Fetch POST request
-                    !first_load_check && await fetch('{{ route('set_theme_mode') }}', {
-                                        method: 'POST',
-                                        headers: {
-                                            'Content-Type': 'application/json',
-                                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                                        },
-                                        body: JSON.stringify({
-                                            theme_mode: @json($theme_mode) == 'dark' ? 'light' : 'dark'
-
-                                        })
-                                    }).then(response => response.text())
-                                    .then(data => {
-                                            console.log('set_theme_mode console response: ', data);
-
-                                            // Restarting the livewire component
-                                            Livewire.dispatch('restart');
-                                        })
-                                        .catch(error => {
-                                            console.log('set_theme_mode console error: ', error);
-                                        });
-
-                     first_load_check = false;
-
-
-
-                // Body element dark mode
-                document.getElementById('body_element').classList.toggle('bg-light_gray');
-                document.getElementById('body_element').classList.toggle('bg-dark_gray');
-
-
-
-                // Main element dark mode
-                document.getElementById('main_element').classList.toggle('bg-light_gray');
-                document.getElementById('main_element').classList.toggle('bg-dark_gray');
-
-
-
-                // Dark mode logo
-                document.getElementById('light_mode_logo').classList.toggle('hidden');
-                document.getElementById('dark_mode_logo').classList.toggle('hidden');
-
-
-
-                // Dark mode icon
-                document.getElementById('light_mode_icon').classList.toggle('hidden');
-                document.getElementById('dark_mode_icon').classList.toggle('hidden');
-
-
-
-                // Nav element dark mode
-                document.querySelector('nav').classList.toggle('bg-slate-50');
-                document.querySelector('nav').classList.toggle('bg-dark_gray');
-
-
-
-                // // Welcome text dark mode
-                // document.getElementById('welcome_text').classList.toggle('text-white');
-
-
-
-                // First Message dark mode
-                document.getElementById('first_message').classList.toggle('text-dark_mode_blue');
-                document.getElementById('first_message').classList.toggle('text-light_mode_blue');
-
-
-
-                // Hr Line dark mode
-                document.getElementById('hr_line').classList.toggle('bg-black');
-                document.getElementById('hr_line').classList.toggle('bg-white');
-
-
-
-                // Input labels dark mode
-                document.getElementById('email_input_label').classList.toggle('text-white');
-                document.getElementById('password_input_label').classList.toggle('text-white');
-
-
-
-                // Email input dark mode
-                document.getElementById('email_input').classList.toggle('bg-input_dark_mode');
-                document.getElementById('email_input').classList.toggle('text-white');
-
-
-
-                // Password input dark mode
-                document.getElementById('password_input').classList.toggle('bg-input_dark_mode');
-                document.getElementById('password_input').classList.toggle('text-white');
-
-
-
-                // Submit button dark mode
-                document.getElementById('submit_button').classList.toggle('bg-dark_mode_blue');
-                document.getElementById('submit_button').classList.toggle('bg-light_mode_blue');
-
-
-
-        })
-
-
-
-</script>
-
-
+    </script>
 
 </body>
 </html>
