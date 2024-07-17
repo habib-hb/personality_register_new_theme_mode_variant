@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" id="profile_nav" class="bg-slate-50   ">
+<nav x-data="{ open: false }" id="profile_nav" class=" {{session('theme_mode') == 'dark' ? 'bg-dark_gray' : 'bg-slate-50'}}  ">
         {{-- dark:bg-gray-800 dark:border-gray-700 --}}
     <!-- Primary Navigation Menu -->
     <div class="max-w-full mx-auto px-4 sm:px-6 lg:px-8" style="box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);">
@@ -9,9 +9,9 @@
 
                         {{-- <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" /> --}}
 
-                        <img id="dark_mode_logo" class="cursor-pointer hidden" src="{{ asset('files/images/dark_mode_logo.png') }}" width="88px" alt="Pic">
+                        <img id="light_mode_logo" class="cursor-pointer {{session('theme_mode') == 'dark' ? 'hidden' : ''}}" src="{{ asset('files/images/light_mode_logo.png') }}" width="88px" alt="Pic">
 
-                        <img id="light_mode_logo" class="cursor-pointer" src="{{ asset('files/images/light_mode_logo.png') }}" width="88px" alt="Pic">
+                        <img id="dark_mode_logo" class="cursor-pointer {{session('theme_mode') == 'dark' ? '' : 'hidden'}}" src="{{ asset('files/images/dark_mode_logo.png') }}" width="88px" alt="Pic">
 
                 </div>
                 <!-- Navigation Links -->
@@ -26,7 +26,7 @@
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
-                        <button id="profile_dropdown_button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500  bg-white  hover:text-gray-700  focus:outline-none transition ease-in-out duration-150">
+                        <button id="profile_dropdown_button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white {{ session('theme_mode') == 'dark' ? 'bg-dark_mode_blue' : 'bg-light_mode_blue'}}  focus:outline-none transition ease-in-out duration-150">
                             {{-- dark:text-gray-400  dark:bg-gray-800  dark:hover:text-gray-300--}}
                             <div>{{ Auth::user()->name }}</div>
 
@@ -59,7 +59,7 @@
 
             <!-- Hamburger -->
             <div class="-me-2 flex items-center sm:hidden z-10">
-                <button id="profile_hamburger" @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400  hover:text-gray-500  hover:bg-gray-100  focus:outline-none focus:bg-gray-100  focus:text-gray-500  transition duration-150 ease-in-out">
+                <button id="profile_hamburger" @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md  {{ session('theme_mode') == 'dark' ? 'text-white' : 'text-black'}}  transition duration-150 ease-in-out">
                     {{-- dark:hover:bg-gray-900 dark:hover:text-gray-400 dark:focus:text-gray-400 dark:focus:bg-gray-900 dark:focus:text-gray-400 dark:text-gray-500  --}}
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                         <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -79,13 +79,13 @@
         </div>
 
         <!-- Responsive Settings Options -->
-        <div id="profile_dropdown_mobile" class="pt-4 pb-1 border-t border-gray-200 ">
+        <div id="profile_dropdown_mobile" class="pt-4 pb-1 border-t border-gray-200 {{ session('theme_mode') == 'dark' ? 'border-dark_mode_blue' : 'border-light_mode_blue'}} ">
             {{-- dark:border-gray-600 --}}
             <div class="px-4">
-                <div id="profile_dropdown_mobile_name" class="font-medium text-base text-gray-800 ">{{ Auth::user()->name }}</div>
+                <div id="profile_dropdown_mobile_name" class="font-medium text-base {{ session('theme_mode') == 'dark' ? 'text-white' : ''}} ">{{ Auth::user()->name }}</div>
                 {{-- dark:text-gray-200 --}}
 
-                <div id="profile_dropdown_mobile_email" class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
+                <div id="profile_dropdown_mobile_email" class="font-medium text-sm {{ session('theme_mode') == 'dark' ? 'text-white' : ''}}">{{ Auth::user()->email }}</div>
 
             </div>
 

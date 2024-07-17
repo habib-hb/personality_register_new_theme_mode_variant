@@ -1,11 +1,11 @@
 <section class="space-y-6">
     <header>
-        <h2 id="profile_delete_user_form_title" class="text-lg font-medium text-gray-900">
+        <h2 id="profile_delete_user_form_title" class="text-lg font-medium {{session('theme_mode') == 'dark' ? 'text-white' : ''}}">
             {{-- dark:text-gray-100 --}}
             {{ __('Delete Account') }}
         </h2>
 
-        <p id="profile_delete_user_form_description" class="mt-1 text-sm text-gray-600 ">
+        <p id="profile_delete_user_form_description" class="mt-1 text-sm {{session('theme_mode') == 'dark' ? 'text-white' : ''}}">
             {{-- dark:text-gray-400 --}}
             {{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.') }}
         </p>
@@ -17,16 +17,16 @@
     >{{ __('Delete Account') }}</x-danger-button>
 
     <x-modal name="confirm-user-deletion" :show="$errors->userDeletion->isNotEmpty()" focusable>
-        <form id="profile_delete_user_form_body" class="bg-white p-8" method="post" action="{{ route('profile.destroy') }}" class="p-6">
+        <form id="profile_delete_user_form_body" class=" {{session('theme_mode') == 'dark' ? 'bg-input_dark_mode text-white' : 'bg-white'}} p-8" method="post" action="{{ route('profile.destroy') }}" class="p-6">
             @csrf
             @method('delete')
 
-            <h2 id="profile_delete_user_form_reassurance_alert" class="text-lg font-medium text-gray-900 ">
+            <h2 id="profile_delete_user_form_reassurance_alert" class="text-lg font-medium  {{session('theme_mode') == 'dark' ? 'text-white' : ''}}">
                 {{-- dark:text-gray-100 --}}
                 {{ __('Are you sure you want to delete your account?') }}
             </h2>
 
-            <p id="profile_delete_user_form_reassurance_description" class="mt-1 text-sm text-gray-600 ">
+            <p id="profile_delete_user_form_reassurance_description" class="mt-1 text-sm {{session('theme_mode') == 'dark' ? 'text-white' : ''}} ">
                 {{-- dark:text-gray-400 --}}
                 {{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.') }}
             </p>
@@ -38,7 +38,7 @@
                     id="password"
                     name="password"
                     type="password"
-                    class="mt-1 block w-3/4"
+                    class="mt-1 block w-3/4 {{session('theme_mode') == 'dark' ? ' text-white bg-input_dark_mode' : ''}}"
                     placeholder="{{ __('Password') }}"
                 />
 

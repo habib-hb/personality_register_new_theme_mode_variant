@@ -31,7 +31,7 @@
             {{-- Dark Mode Icon --}}
             <img id="dark_mode_icon" class="cursor-pointer {{$theme_mode == 'dark' ? '' : 'hidden'}}" src="{{ asset('files/images/dark_mode_icon.png') }}" width = "64px" alt="">
 
-             {{-- Loading Message --}}
+            {{-- Loading Message --}}
             <p id='theme_mode_change_loading_message' class='text-center hidden {{$theme_mode == 'dark' ? 'text-white' : ''}}'>Loading...</p>
 
     </div>
@@ -59,9 +59,17 @@
                     <label id="feedback_input_label" for="feedback_input" class="text-center mb-4 md:mb-0 {{$theme_mode == 'dark' ? 'text-white' : ''}}">Feedback</label>
                 </div>
                 <textarea required id="feedback_input" name="feedback" class="w-[90vw] border-none rounded-md md:mt-2 md:max-w-[500px] {{$theme_mode == 'dark' ? 'bg-input_dark_mode text-white' : ''}}"></textarea>
+                
                 @error('feedback_input')
                 <span class="text-red-500 text-sm">{{ $message }}</span>
                 @enderror
+
+                 {{-- Showing flash message --}}
+                 @if (session()->has('message'))
+                 <div class="text-green-500 text-sm">
+                 {{ session()->get('message') }}
+                 </div>
+                 @endif
 
                 {{-- Log In button --}}
                 <input type="submit" id="feedback_submit_button" value="Send Feedback" class="mt-[2vh] md:mt-[4vh] mb-[4vh] h-12 w-[60%] md:w-[90%] rounded-md  {{$theme_mode == 'dark' ? 'bg-dark_mode_blue' : 'bg-light_mode_blue'}} text-white hover:opacity-90 text-xl md:max-w-[350px] md:mb-[12vh]">

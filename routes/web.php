@@ -169,8 +169,16 @@ Route::post('feedback', function(Request $request) {
 
     if(Auth::check()) {
     DB::insert('INSERT INTO feedback_message (user_id ,feedback, created_at) VALUES (?,?,?)' , [$data['user_id'] ?? null , $data['feedback'] , $data['created_at']]);
+
+        // Sending a flash message
+        session()->flash('message', 'Feedback sent successfully.');
+
     } else {
         DB::insert('INSERT INTO feedback_message (feedback, created_at) VALUES (?,?)' , [$data['feedback'] , $data['created_at']]);
+
+        // Sending a flash message
+        session()->flash('message', 'Feedback sent successfully.');
+        
     }
 
     // Return redirect back
