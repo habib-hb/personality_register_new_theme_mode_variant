@@ -43,7 +43,7 @@
 
 
             {{-- Submit button --}}
-            <input type="submit" id="submit_button" value="Submit" class="mt-[4vh] mb-[4vh] h-12 w-[90%] rounded-md bg-light_mode_blue text-white hover:opacity-90 text-xl md:max-w-[350px] md:mb-[12vh]">
+            <input type="submit" id="submit_button" value="Submit" class="mt-[4vh] mb-[4vh] h-12 w-[90%] rounded-md bg-dark_mode_blue text-white hover:opacity-90 text-xl md:max-w-[350px] md:mb-[12vh]">
 
         </form>
 
