@@ -118,7 +118,7 @@ Route::get('/input_quotes' , function () {
 
     return view('database_input.quotes' , ['theme_mode' => session('theme_mode') ?? 'light']);
 
-})->name('input_quotes');
+})->middleware('auth')->name('input_quotes');
 
 
 

@@ -68,6 +68,8 @@
         {{-- The Quote List --}}
         <h2 id="quote_list_title" class="{{$theme_mode == 'dark' ? 'text-dark_mode_blue' : 'text-light_mode_blue' }} text-center text-[24px] font-normal font-['Inter'] mb-[2vh]">{{$current_personality_name}} Quote List</h2>
 
+        <h2 class="{{$theme_mode == 'dark' ? 'text-white' : 'text-black'}} text-center text-[18px] font-normal font-['Inter'] mb-[12px]">( Select another personality type on the " Select The Personality Type " input-box to change the quote list accordingly )</h2>
+
         <div class="flex flex-col gap-4 justify-center items-center mb-4">
 
             {{-- For each quote, new component --}}
@@ -79,9 +81,9 @@
 
                     <div class="flex justify-between md:justify-center md:gap-8">
 
-                        <button class="quote_list_element_edit_button w-[35vw] md:w-[200px] h-[6vh] {{$theme_mode == 'dark' ? 'bg-dark_mode_blue' : 'bg-light_mode_blue'}} rounded-lg text-white text-xl font-normal flex items-center justify-center" onclick="edit_quote({{$quote->id}} , `{{$quote->quote}}`)">Edit</button>
+                        <button class="quote_list_element_edit_button w-[35vw] md:w-[200px] h-[6vh] {{$theme_mode == 'dark' ? 'bg-dark_mode_blue' : 'bg-light_mode_blue'}} rounded-lg text-white text-xl font-normal flex items-center justify-center hover:opacity-90" onclick="edit_quote({{$quote->id}} , `{{$quote->quote}}`)">Edit</button>
 
-                        <button class="quote_list_element_delete_button w-[35vw] md:w-[200px]  h-[6vh] {{$theme_mode == 'dark' ? 'bg-dark_mode_red' : 'bg-light_mode_red'}} rounded-lg text-white text-xl font-normal flex items-center justify-center" onclick="delete_quote({{$quote->id}} , `{{$quote->quote}}`)">Delete</button>
+                        <button class="quote_list_element_delete_button w-[35vw] md:w-[200px]  h-[6vh] {{$theme_mode == 'dark' ? 'bg-dark_mode_red' : 'bg-light_mode_red'}} rounded-lg text-white text-xl font-normal flex items-center justify-center hover:opacity-90" onclick="delete_quote({{$quote->id}} , `{{$quote->quote}}`)">Delete</button>
                         {{--  wire:click="deleteQuote({{$quote->id}})" --}}
 
                     </div>
@@ -116,7 +118,7 @@
 
                       </div>
 
-                      <button id = "edit_popup_submit_button" type="submit" class="px-8 py-2  {{ $theme_mode == 'dark' ? 'bg-dark_mode_blue' : 'bg-light_mode_blue'}} text-white rounded">Submit</button>
+                      <button id = "edit_popup_submit_button" type="submit" class="px-8 py-2  {{ $theme_mode == 'dark' ? 'bg-dark_mode_blue' : 'bg-light_mode_blue'}} text-white rounded hover:opacity-90">Submit</button>
 
                   </form>
 
@@ -147,7 +149,7 @@
 
                     </div>
 
-                    <button id = "delete_popup_submit_button" type="submit" class="px-8 py-2  {{ $theme_mode == 'dark' ? 'bg-dark_mode_red' : 'bg-light_mode_red'}} text-white rounded">Delete</button>
+                    <button id = "delete_popup_submit_button" type="submit" class="px-8 py-2  {{ $theme_mode == 'dark' ? 'bg-dark_mode_red' : 'bg-light_mode_red'}} text-white rounded hover:opacity-90">Delete</button>
 
                 </form>
 
@@ -280,102 +282,6 @@
                         });
 
 
-
-              // ***Setup dark/light mode javascript based on localStorage value
-            //   function themeMode(){
-            //   if(localStorage.getItem('theme_mode') == 'dark') {
-            //           // Input labels dark mode
-            //         document.getElementById('select_label').classList.toggle('text-white');
-            //         document.getElementById('quote_input_label').classList.toggle('text-white');
-
-
-
-            //         // Selection Fields dark mode
-            //         document.getElementById('section_input').classList.toggle('bg-input_dark_mode');
-            //         document.getElementById('section_input').classList.toggle('text-white');
-
-            //         document.getElementById('option-1').classList.toggle('text-white');
-            //         document.getElementById('option-2').classList.toggle('text-white');
-            //         document.getElementById('option-3').classList.toggle('text-white');
-            //         document.getElementById('option-4').classList.toggle('text-white');
-            //         document.getElementById('option-5').classList.toggle('text-white');
-
-
-
-            //         // Name input dark mode
-            //         document.getElementById('quote_input').classList.toggle('bg-input_dark_mode');
-            //         document.getElementById('quote_input').classList.toggle('text-white');
-
-
-
-            //         // Submit button dark mode
-            //         document.getElementById('submit_button').classList.toggle('bg-dark_mode_blue');
-            //         document.getElementById('submit_button').classList.toggle('bg-light_mode_blue');
-
-
-
-                    // Quote List element section dark mode
-                         // Query List title dark mode
-                        //  document.getElementById('quote_list_title').classList.toggle('text-light_mode_blue');
-                        //  document.getElementById('quote_list_title').classList.toggle('text-dark_mode_blue');
-
-                        //  // query_list_element_body dark mode
-                        //  document.querySelectorAll('.quote_list_element_body').forEach(function(element) {
-                        //      element.classList.toggle('bg-zinc-100');
-                        //      element.classList.toggle('bg-input_dark_mode');
-                        //  });
-
-                        //  // query_list_element_text dark mode
-                        //  document.querySelectorAll('.quote_list_element_text').forEach(function(element) {
-                        //      element.classList.toggle('text-white');
-                        //      element.classList.toggle('text-black');
-                        //  });
-
-                        //  // query_list_element_edit_button dark mode
-                        //  document.querySelectorAll('.quote_list_element_edit_button').forEach(function(element) {
-                        //      element.classList.toggle('bg-dark_mode_blue');
-                        //      element.classList.toggle('bg-light_mode_blue');
-                        //  });
-
-                        //  // query_list_element_delete_button dark mode
-                        //  document.querySelectorAll('.quote_list_element_delete_button').forEach(function(element) {
-                        //      element.classList.toggle('bg-light_mode_red');
-                        //      element.classList.toggle('bg-dark_mode_red');
-                        //  });
-
-
-
-                    // Edit Popup dark mode
-                         // Main box dark/light mode
-                        // document.getElementById('popup_content').classList.toggle('bg-white');
-                        // document.getElementById('popup_content').classList.toggle('bg-input_dark_mode');
-
-                        // // Close Button dark/light mode
-                        // document.getElementById('close_popup_btn').classList.toggle('text-black');
-                        // document.getElementById('close_popup_btn').classList.toggle('text-white');
-
-                        // // Title Dark/Light Mode
-                        // document.getElementById('popup_title').classList.toggle('text-light_mode_blue');
-                        // document.getElementById('popup_title').classList.toggle('text-white');
-
-                        // // quote_edit_input_label dark/light mode
-                        // document.getElementById('quote_edit_input_label').classList.toggle('text-gray-700');
-                        // document.getElementById('quote_edit_input_label').classList.toggle('text-white');
-
-                        // // quote_edit_input dark/light mode
-                        // document.getElementById('quote_edit_input').classList.toggle('bg-white');
-                        // document.getElementById('quote_edit_input').classList.toggle('bg-input_dark_mode');
-                        // document.getElementById('quote_edit_input').classList.toggle('text-white');
-                        // document.getElementById('quote_edit_input').classList.toggle('text-black');
-
-                        // // edit_popup_submit_button dark/light mode
-                        // document.getElementById('edit_popup_submit_button').classList.toggle('bg-light_mode_blue');
-                        // document.getElementById('edit_popup_submit_button').classList.toggle('bg-dark_mode_blue');
-              //} // If end
-
-            //} // themeMode Function End
-
-            // themeMode();
 
             </script>
 
