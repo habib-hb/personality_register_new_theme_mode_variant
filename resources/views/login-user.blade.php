@@ -29,6 +29,10 @@
 
         {{-- Dark Mode Icon --}}
         <img id="dark_mode_icon" class="cursor-pointer {{$theme_mode == 'dark' ? '' : 'hidden'}}" src="{{ asset('files/images/dark_mode_icon.png') }}" width="64px" alt="">
+
+        {{-- Loading Message --}}
+        <p id='theme_mode_change_loading_message' class='text-center hidden {{$theme_mode == 'dark' ? 'text-white' : ''}}'>Loading...</p>
+
     </div>
 
     {{-- Opening Message --}}
@@ -77,6 +81,12 @@
     <script>
         // Dark mode toggle button operation
         document.querySelector('#dark_mode_toggle_button').addEventListener('click', async () => {
+
+        // Setting the loading notification
+        document.querySelector('#theme_mode_change_loading_message').classList.remove('hidden');// The notification will automatically get removed when the page loads through javascript below
+
+
+
             await fetch('{{ route('set_theme_mode') }}', {
                 method: 'POST',
                 headers: {
