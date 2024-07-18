@@ -24,7 +24,7 @@
     </nav>
 
     {{-- Dark Mode Toggle --}}
-    <div id="dark_mode_toggle_button" class="w-full flex flex-col justify-center items-center mt-[4vh] transition-all   md:absolute md:top-[16px] md:items-end md:pr-4 md:mt-[0]">
+    <div id="dark_mode_toggle_button" class="flex flex-col justify-center items-center mt-[4vh] transition-all   md:absolute md:top-[16px] md:right-0 md:pr-4 md:mt-[0]">
             {{-- Light Mode Icon --}}
             <img id="light_mode_icon" class="cursor-pointer {{$theme_mode == 'dark' ? 'hidden' : ''}}" src="{{ asset('files/images/light_mode_icon.png') }}" width = "64px" alt="">
 
@@ -59,7 +59,7 @@
                     <label id="feedback_input_label" for="feedback_input" class="text-center mb-4 md:mb-0 {{$theme_mode == 'dark' ? 'text-white' : ''}}">Feedback</label>
                 </div>
                 <textarea required id="feedback_input" name="feedback" class="w-[90vw] border-none rounded-md md:mt-2 md:max-w-[500px] {{$theme_mode == 'dark' ? 'bg-input_dark_mode text-white' : ''}}"></textarea>
-                
+
                 @error('feedback_input')
                 <span class="text-red-500 text-sm">{{ $message }}</span>
                 @enderror

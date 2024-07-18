@@ -24,7 +24,7 @@
     </nav>
 
         {{-- Dark Mode Toggle --}}
-        <div id="dark_mode_toggle_button" class="w-full flex flex-col justify-center items-center mt-[4vh] transition-all md:absolute md:top-[16px] md:items-end md:pr-4 md:mt-[0]">
+        <div id="dark_mode_toggle_button" class="flex flex-col justify-center items-center mt-[4vh] transition-all   md:absolute md:top-[16px] md:right-0 md:pr-4 md:mt-[0]">
             {{-- Light Mode Icon --}}
             <img id="light_mode_icon" class="cursor-pointer {{$theme_mode == 'dark' ? 'hidden' : ''}}" src="{{ asset('files/images/light_mode_icon.png') }}" width = "64px" alt="">
 
