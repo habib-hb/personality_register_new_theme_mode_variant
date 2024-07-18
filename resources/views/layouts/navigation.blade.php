@@ -9,9 +9,9 @@
 
                         {{-- <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" /> --}}
 
-                        <img id="light_mode_logo" class="cursor-pointer {{session('theme_mode') == 'dark' ? 'hidden' : ''}}" src="{{ asset('files/images/light_mode_logo.png') }}" width="88px" alt="Pic">
+                        <img id="light_mode_logo" onclick="window.location.href='/'"  class="cursor-pointer {{session('theme_mode') == 'dark' ? 'hidden' : ''}}" src="{{ asset('files/images/light_mode_logo.png') }}" width="88px" alt="Pic">
 
-                        <img id="dark_mode_logo" class="cursor-pointer {{session('theme_mode') == 'dark' ? '' : 'hidden'}}" src="{{ asset('files/images/dark_mode_logo.png') }}" width="88px" alt="Pic">
+                        <img id="dark_mode_logo" onclick="window.location.href='/'"  class="cursor-pointer {{session('theme_mode') == 'dark' ? '' : 'hidden'}}" src="{{ asset('files/images/dark_mode_logo.png') }}" width="88px" alt="Pic">
 
                 </div>
                 <!-- Navigation Links -->

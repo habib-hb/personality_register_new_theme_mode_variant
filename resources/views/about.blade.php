@@ -16,10 +16,10 @@
 
     <nav class="w-full h-[64px] flex flex-col justify-center items-center {{$theme_mode == 'dark' ? 'bg-dark_gray' : 'bg-slate-50'}} " style="box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);">
 
-        <img id="light_mode_logo" class="cursor-pointer {{$theme_mode == 'dark' ? 'hidden' : ''}}" src="{{ asset('files/images/light_mode_logo.png') }}" width="88px" alt="Pic">
+        <img id="light_mode_logo" onclick="window.location.href='/'" class="cursor-pointer {{$theme_mode == 'dark' ? 'hidden' : ''}}" src="{{ asset('files/images/light_mode_logo.png') }}" width="88px" alt="Pic">
 
         {{-- Dark Mode Logo --}}
-        <img id="dark_mode_logo" class="cursor-pointer {{$theme_mode == 'dark' ? '' : 'hidden'}}" src="{{ asset('files/images/dark_mode_logo.png') }}" width="88px" alt="Pic">
+        <img id="dark_mode_logo"  onclick="window.location.href='/'" class="cursor-pointer {{$theme_mode == 'dark' ? '' : 'hidden'}}" src="{{ asset('files/images/dark_mode_logo.png') }}" width="88px" alt="Pic">
 
     </nav>
 
